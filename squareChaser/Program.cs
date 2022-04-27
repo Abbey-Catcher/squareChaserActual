@@ -16,7 +16,7 @@ namespace squareChaser
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new squareChaser());
+            Application.Run(new Form1());
         }
     }
 }
