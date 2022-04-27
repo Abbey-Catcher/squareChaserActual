@@ -12,9 +12,12 @@ namespace squareChaser
 {
     public partial class squareChaser : Form
     {
-        Rectangle player1 = new Rectangle(10, 170, 20, 20);
-        Rectangle player2 = new Rectangle(550, 170, 20, 20);
+        Random randGen =  new Random();
+
+        Rectangle player1 = new Rectangle(20, 200, 20, 20);
+        Rectangle player2 = new Rectangle(560, 200, 20, 20);
         Rectangle ball = new Rectangle(295, 195, 10, 10);
+        Rectangle boarder = new Rectangle(10, 40, 580, 350);
 
         int player1Score = 0;
         int player2Score = 0;
@@ -35,6 +38,7 @@ namespace squareChaser
         SolidBrush blueBrush = new SolidBrush(Color.DodgerBlue);
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush redBrush = new SolidBrush(Color.Red);
+        Pen boarderPen = new Pen(Color.Blue, 10);
 
         public squareChaser()
         {
@@ -47,58 +51,51 @@ namespace squareChaser
             {
                 case Keys.W:
                     wDown = true;
+                    sDown = false;
+                    aDown = false;
+                    dDown = false;
                     break;
                 case Keys.S:
                     sDown = true;
+                    wDown = false;
+                    aDown = false;
+                    dDown = false;
                     break;
                 case Keys.A:
                     aDown = true;
+                    wDown = false;
+                    sDown = false;
+                    dDown = false;
                     break;
                 case Keys.D:
                     dDown = true;
+                    wDown = false;
+                    sDown = false;
+                    aDown = false;
                     break;
                 case Keys.Up:
                     upArrowDown = true;
+                    downArrowDown = false;
+                    leftArrowDown = false;
+                    rightArrowDown = false;
                     break;
                 case Keys.Down:
                     downArrowDown = true;
+                    upArrowDown = false;
+                    leftArrowDown = false;
+                    rightArrowDown = false;
                     break;
                 case Keys.Left:
                     leftArrowDown = true;
+                    upArrowDown = false;
+                    downArrowDown = false;
+                    rightArrowDown = false;
                     break;
                 case Keys.Right:
                     rightArrowDown = true;
-                    break;
-            }
-        }
-
-        private void squareChaser_KeyUp(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.W:
-                    wDown = false;
-                    break;
-                case Keys.S:
-                    sDown = false;
-                    break;
-                case Keys.A:
-                    aDown = false;
-                    break;
-                case Keys.D:
-                    dDown = false;
-                    break;
-                case Keys.Up:
                     upArrowDown = false;
-                    break;
-                case Keys.Down:
                     downArrowDown = false;
-                    break;
-                case Keys.Left:
                     leftArrowDown = false;
-                    break;
-                case Keys.Right:
-                    rightArrowDown = false;
                     break;
             }
         }
@@ -108,6 +105,31 @@ namespace squareChaser
             e.Graphics.FillRectangle(blueBrush, player1);
             e.Graphics.FillRectangle(redBrush, player2);
             e.Graphics.FillRectangle(whiteBrush, ball);
+            e.Graphics.DrawRectangle(boarderPen, boarder);
+        }
+
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            //move player 1
+            if (wDown == true && player1.Y > 10)
+            {
+                player1.Y -= playerSpeed;
+            }
+
+            if (sDown == true && player1.Y < this.Height - player1.Height)
+            {
+                player1.Y += playerSpeed;
+            }
+
+            if (aDown == true && player1.X > 10)
+            {
+                player1.X -= playerSpeed;
+            }
+
+            if (dDown == true && player1.X < this.Width - player1.Width)
+            {
+                player1.X += playerSpeed;
+            }
         }
     }
 }

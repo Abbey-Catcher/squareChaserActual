@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.p1ScoreLabel = new System.Windows.Forms.Label();
             this.p2ScoreLabel = new System.Windows.Forms.Label();
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // p1ScoreLabel
@@ -54,12 +56,18 @@
             this.p2ScoreLabel.Text = "label1";
             this.p2ScoreLabel.Visible = false;
             // 
+            // gameTimer
+            // 
+            this.gameTimer.Enabled = true;
+            this.gameTimer.Interval = 20;
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
+            // 
             // squareChaser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(600, 400);
             this.Controls.Add(this.p2ScoreLabel);
             this.Controls.Add(this.p1ScoreLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -67,7 +75,6 @@
             this.Text = "Form1";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.squareChaser_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.squareChaser_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.squareChaser_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -77,6 +84,7 @@
 
         private System.Windows.Forms.Label p1ScoreLabel;
         private System.Windows.Forms.Label p2ScoreLabel;
+        private System.Windows.Forms.Timer gameTimer;
     }
 }
 
