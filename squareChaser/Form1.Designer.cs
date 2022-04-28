@@ -73,8 +73,8 @@
             this.outputLabel.Name = "outputLabel";
             this.outputLabel.Size = new System.Drawing.Size(174, 29);
             this.outputLabel.TabIndex = 2;
-            this.outputLabel.Text = "label1";
             this.outputLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.outputLabel.Visible = false;
             // 
             // Form1
             // 
@@ -85,11 +85,12 @@
             this.Controls.Add(this.outputLabel);
             this.Controls.Add(this.p2ScoreLabel);
             this.Controls.Add(this.p1ScoreLabel);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.squareChaser_Paint);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.squareChaser_KeyDown);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

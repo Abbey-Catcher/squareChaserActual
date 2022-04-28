@@ -16,7 +16,9 @@ namespace squareChaser
 
         Rectangle player1 = new Rectangle(20, 200, 20, 20);
         Rectangle player2 = new Rectangle(560, 200, 20, 20);
+        //try to make boarder width
         Rectangle boarder = new Rectangle(10, 40, 580, 350);
+        Rectangle pointSquare = new Rectangle(295, 160, 15, 15);
 
         int player1Score = 0;
         int player2Score = 0;
@@ -44,7 +46,7 @@ namespace squareChaser
             InitializeComponent();
         }
 
-        private void squareChaser_KeyDown(object sender, KeyEventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -101,8 +103,10 @@ namespace squareChaser
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            
+
             //move player 1
-            if (wDown == true && player1.Y >= 15)
+            if (wDown == true && player1.Y >= 17)
             {
                 player1.Y -= playerSpeed;
             }
@@ -112,7 +116,7 @@ namespace squareChaser
                 player1.Y += playerSpeed;
             }
 
-            if (aDown == true && player1.X > 15)
+            if (aDown == true && player1.X >= 17)
             {
                 player1.X -= playerSpeed;
             }
@@ -123,7 +127,7 @@ namespace squareChaser
             }
             
             //move player 2 
-            if (upArrowDown == true && player2.Y > 0)
+            if (upArrowDown == true && player2.Y >= 17)
             {
                 player2.Y -= playerSpeed;
             }
@@ -133,7 +137,7 @@ namespace squareChaser
                 player2.Y += playerSpeed;
             }
 
-            if (leftArrowDown == true && player2.X > 0)
+            if (leftArrowDown == true && player2.X >= 17)
             {
                 player2.X -= playerSpeed;
             }
@@ -144,17 +148,38 @@ namespace squareChaser
             }
 
             //if statement if player gets white square, add point
+            if (player1.IntersectsWith(pointSquare))
+            {
+                int x = randGen.Next(16, 580);
+                int y = randGen.Next(41, 350);
+                pointSquare.Location = new Point(x, y);
+                p1ScoreLabel.Visible = true;
+                player1Score++;
+                p1ScoreLabel.Text = $"{player1Score}";
+            }
+            else if (player2.IntersectsWith(pointSquare))
+            {
+                int x = randGen.Next(16, 580);
+                int y = randGen.Next(41, 350);
+                pointSquare.Location = new Point(x, y);
+                p2ScoreLabel.Visible = true;
+                player2Score++;
+                p2ScoreLabel.Text = $"{player1Score}";
+            }
 
-            //when plater gets square, change square location
+            //when player gets square, change square location
 
             Refresh();
         }
 
-        private void squareChaser_Paint(object sender, PaintEventArgs e)
+        private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            e.Graphics.DrawRectangle(boarderPen, boarder);
             e.Graphics.FillRectangle(blueBrush, player1);
             e.Graphics.FillRectangle(redBrush, player2);
-            e.Graphics.DrawRectangle(boarderPen, boarder);
+            e.Graphics.FillRectangle(whiteBrush, pointSquare);
+
+            //if statement for drawing pointSquare when player starts moving
         }
     }
 }
