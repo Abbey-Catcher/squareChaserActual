@@ -16,9 +16,8 @@ namespace squareChaser
 
         Rectangle player1 = new Rectangle(20, 200, 20, 20);
         Rectangle player2 = new Rectangle(560, 200, 20, 20);
-        //try to make boarder width
-        Rectangle boarder = new Rectangle(10, 40, 580, 350);
         Rectangle pointSquare = new Rectangle(295, 160, 15, 15);
+        
 
         int player1Score = 0;
         int player2Score = 0;
@@ -39,11 +38,13 @@ namespace squareChaser
         SolidBrush blueBrush = new SolidBrush(Color.DodgerBlue);
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush redBrush = new SolidBrush(Color.Red);
+        SolidBrush violetBrush = new SolidBrush(Color.Violet);
         Pen boarderPen = new Pen(Color.Blue, 10);
 
         public Form1()
         {
             InitializeComponent();
+            Rectangle boarder = new Rectangle(10, 40, this.Width - 20, this.Height - 50);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -103,7 +104,6 @@ namespace squareChaser
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            
 
             //move player 1
             if (wDown == true && player1.Y >= 17)
@@ -147,13 +147,12 @@ namespace squareChaser
                 player2.X += playerSpeed;
             }
 
-            //if statement if player gets white square, add point
+            //if statement if player gets white square, add point. change location
             if (player1.IntersectsWith(pointSquare))
             {
                 int x = randGen.Next(16, 580);
                 int y = randGen.Next(41, 350);
                 pointSquare.Location = new Point(x, y);
-                p1ScoreLabel.Visible = true;
                 player1Score++;
                 p1ScoreLabel.Text = $"{player1Score}";
             }
@@ -162,22 +161,35 @@ namespace squareChaser
                 int x = randGen.Next(16, 580);
                 int y = randGen.Next(41, 350);
                 pointSquare.Location = new Point(x, y);
-                p2ScoreLabel.Visible = true;
                 player2Score++;
                 p2ScoreLabel.Text = $"{player1Score}";
             }
 
-            //when player gets square, change square location
+            if (player1Score == 5)
+            {
+                gameTimer.Enabled = false;
+                winLabel.Visible = true;
+                winLabel.Text = "Player 1 Wins!!";
+            }
+            else if (player2Score == 5)
+            {
+                gameTimer.Enabled = false;
+                winLabel.Visible = true;
+                winLabel.Text = "Player 2 Wins!!";
+            }
+
+            //Move speed point, up speed of player when hit
 
             Refresh();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(boarderPen, boarder);
+            e.Graphics.DrawRectangle(boarderPen, boarder.X, boarder.Y, boarder.Width, boarder.Height);
             e.Graphics.FillRectangle(blueBrush, player1);
             e.Graphics.FillRectangle(redBrush, player2);
             e.Graphics.FillRectangle(whiteBrush, pointSquare);
+            e.Graphics.FillEllipse(violetBrush, 290, 180, 15, 15);
 
             //if statement for drawing pointSquare when player starts moving
         }
