@@ -17,7 +17,9 @@ namespace squareChaser
         Rectangle player1 = new Rectangle(20, 200, 20, 20);
         Rectangle player2 = new Rectangle(560, 200, 20, 20);
         Rectangle pointSquare = new Rectangle(295, 160, 15, 15);
-        
+        Rectangle speedPoint = new Rectangle(295, 180, 15, 15);
+        //Rectangle boarder = new Rectangle(10, 40, 580, 350); 
+
 
         int player1Score = 0;
         int player2Score = 0;
@@ -106,12 +108,12 @@ namespace squareChaser
         {
 
             //move player 1
-            if (wDown == true && player1.Y >= 17)
+            if (wDown == true && player1.Y >= 47)
             {
                 player1.Y -= playerSpeed;
             }
 
-            if (sDown == true && player1.Y < this.Height - player1.Height)
+            if (sDown == true && player1.Y < (this.Height - 17) - player1.Height)
             {
                 player1.Y += playerSpeed;
             }
@@ -121,18 +123,18 @@ namespace squareChaser
                 player1.X -= playerSpeed;
             }
 
-            if (dDown == true && player1.X < this.Width - player1.Width)
+            if (dDown == true && player1.X < (this.Width - 17) - player1.Width)
             {
                 player1.X += playerSpeed;
             }
             
             //move player 2 
-            if (upArrowDown == true && player2.Y >= 17)
+            if (upArrowDown == true && player2.Y >= 47)
             {
                 player2.Y -= playerSpeed;
             }
 
-            if (downArrowDown == true && player2.Y < this.Height - player2.Height)
+            if (downArrowDown == true && player2.Y < (this.Height - 17) - player2.Height)
             {
                 player2.Y += playerSpeed;
             }
@@ -142,7 +144,7 @@ namespace squareChaser
                 player2.X -= playerSpeed;
             }
 
-            if (rightArrowDown == true && player2.X < this.Width - player2.Width)
+            if (rightArrowDown == true && player2.X < (this.Width - 17) - player2.Width)
             {
                 player2.X += playerSpeed;
             }
@@ -150,9 +152,9 @@ namespace squareChaser
             //if statement if player gets white square, add point. change location
             if (player1.IntersectsWith(pointSquare))
             {
-                int x = randGen.Next(16, 580);
-                int y = randGen.Next(41, 350);
-                pointSquare.Location = new Point(x, y);
+                int pointSquarex = randGen.Next(16, 580);
+                int pointSquarey = randGen.Next(41, 350);
+                pointSquare.Location = new Point(pointSquarex, pointSquarey);
                 player1Score++;
                 p1ScoreLabel.Text = $"{player1Score}";
             }
@@ -179,17 +181,37 @@ namespace squareChaser
             }
 
             //Move speed point, up speed of player when hit
+            if (player1.IntersectsWith(speedPoint))
+            {
+                int speedPointx = randGen.Next(16, this.Width - 20);
+                int speedPointy = randGen.Next(41, this.Height - 50);
+                speedPoint.Location = new Point(speedPointx, speedPointy);
+                if (playerSpeed < 7)
+                {
+                    playerSpeed++;
+                }
+            }
+            else if (player2.IntersectsWith(speedPoint))
+            {
+                int speedPointx = randGen.Next(16, this.Width - 20);
+                int speedPointy = randGen.Next(41, this.Height - 50);
+                speedPoint.Location = new Point(speedPointx, speedPointy);
+                if (playerSpeed < 7)
+                {
+                    playerSpeed++;
+                }
+            }
 
             Refresh();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(boarderPen, boarder.X, boarder.Y, boarder.Width, boarder.Height);
+            e.Graphics.DrawRectangle(boarderPen, boarder.x, boarder.y, boarder.Width, boarder.Height);
             e.Graphics.FillRectangle(blueBrush, player1);
             e.Graphics.FillRectangle(redBrush, player2);
             e.Graphics.FillRectangle(whiteBrush, pointSquare);
-            e.Graphics.FillEllipse(violetBrush, 290, 180, 15, 15);
+            e.Graphics.FillEllipse(violetBrush, speedPoint);
 
             //if statement for drawing pointSquare when player starts moving
         }
