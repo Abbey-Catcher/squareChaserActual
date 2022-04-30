@@ -46,7 +46,6 @@ namespace squareChaser
         public Form1()
         {
             InitializeComponent();
-            Rectangle boarder = new Rectangle(10, 40, this.Width - 20, this.Height - 50);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -113,7 +112,7 @@ namespace squareChaser
                 player1.Y -= playerSpeed;
             }
 
-            if (sDown == true && player1.Y < (this.Height - 17) - player1.Height)
+            if (sDown == true && player1.Y < (this.Height - 19) - player1.Height)
             {
                 player1.Y += playerSpeed;
             }
@@ -134,7 +133,7 @@ namespace squareChaser
                 player2.Y -= playerSpeed;
             }
 
-            if (downArrowDown == true && player2.Y < (this.Height - 17) - player2.Height)
+            if (downArrowDown == true && player2.Y < (this.Height - 19) - player2.Height)
             {
                 player2.Y += playerSpeed;
             }
@@ -207,7 +206,7 @@ namespace squareChaser
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(boarderPen, boarder.x, boarder.y, boarder.Width, boarder.Height);
+            e.Graphics.DrawRectangle(boarderPen, 10, 40, this.Width - 20, this.Height - 50);
             e.Graphics.FillRectangle(blueBrush, player1);
             e.Graphics.FillRectangle(redBrush, player2);
             e.Graphics.FillRectangle(whiteBrush, pointSquare);
