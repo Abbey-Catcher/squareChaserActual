@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Media;
 
 namespace squareChaser
 {
@@ -32,7 +33,7 @@ namespace squareChaser
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush violetBrush = new SolidBrush(Color.Violet);
-        Pen boarderPen = new Pen(Color.Blue, 10);
+        Pen boarderPen = new Pen(Color.YellowGreen, 10);
 
         public Form1()
         {
@@ -147,6 +148,8 @@ namespace squareChaser
                 pointSquare.Location = new Point(pointSquarex, pointSquarey);
                 player1Score++;
                 p1ScoreLabel.Text = $"{player1Score}";
+                SoundPlayer pointPlayer = new SoundPlayer(Properties.Resources._353497__matteshaus__metall_tischbein);
+                pointPlayer.Play();
             }
             else if (player2.IntersectsWith(pointSquare))
             {
@@ -155,19 +158,8 @@ namespace squareChaser
                 pointSquare.Location = new Point(pointSquarex, pointSquarey);
                 player2Score++;
                 p2ScoreLabel.Text = $"{player1Score}";
-            }
-
-            if (player1Score == 10)
-            {
-                gameTimer.Enabled = false;
-                winLabel.Visible = true;
-                winLabel.Text = "Player 1 Wins!!";
-            }
-            else if (player2Score == 10)
-            {
-                gameTimer.Enabled = false;
-                winLabel.Visible = true;
-                winLabel.Text = "Player 2 Wins!!";
+                SoundPlayer pointPlayer2 = new SoundPlayer(Properties.Resources._353497__matteshaus__metall_tischbein);
+                pointPlayer2.Play();
             }
 
             //Move speed point, up speed of player when hit
@@ -180,6 +172,8 @@ namespace squareChaser
                 {
                     playerSpeed++;
                 }
+                SoundPlayer speedPlayer = new SoundPlayer(Properties.Resources._341227__jeremysykes__powerup);
+                speedPlayer.Play();
             }
             else if (player2.IntersectsWith(speedPoint))
             {
@@ -190,6 +184,26 @@ namespace squareChaser
                 {
                     playerSpeed++;
                 }
+                SoundPlayer speedPlayer2 = new SoundPlayer(Properties.Resources._341227__jeremysykes__powerup);
+                speedPlayer2.Play();
+            }
+
+            //player reaches 10 points, win
+            if (player1Score == 10)
+            {
+                gameTimer.Enabled = false;
+                winLabel.Visible = true;
+                winLabel.Text = "Player 1 Wins!!";
+                SoundPlayer winPlayer = new SoundPlayer(Properties.Resources._270319__littlerobotsoundfactory__jingle_win_01);
+                winPlayer.Play();
+            }
+            else if (player2Score == 10)
+            {
+                gameTimer.Enabled = false;
+                winLabel.Visible = true;
+                winLabel.Text = "Player 2 Wins!!";
+                SoundPlayer winPlayer2 = new SoundPlayer(Properties.Resources._270319__littlerobotsoundfactory__jingle_win_01);
+                winPlayer2.Play();
             }
 
             Refresh();
