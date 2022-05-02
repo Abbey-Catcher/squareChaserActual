@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace squareChaser
@@ -18,15 +12,12 @@ namespace squareChaser
         Rectangle player2 = new Rectangle(560, 200, 20, 20);
         Rectangle pointSquare = new Rectangle(295, 160, 15, 15);
         Rectangle speedPoint = new Rectangle(295, 180, 15, 15);
-        //Rectangle boarder = new Rectangle(10, 40, 580, 350); 
 
 
         int player1Score = 0;
         int player2Score = 0;
 
         int playerSpeed = 4;
-        int ballXSpeed = 6;
-        int ballYSpeed = -6;
 
         bool wDown = false;
         bool sDown = false;
@@ -148,7 +139,7 @@ namespace squareChaser
                 player2.X += playerSpeed;
             }
 
-            //if statement if player gets white square, add point. change location
+            //if statement if player gets white square, add point, change location
             if (player1.IntersectsWith(pointSquare))
             {
                 int pointSquarex = randGen.Next(16, 580);
@@ -159,20 +150,20 @@ namespace squareChaser
             }
             else if (player2.IntersectsWith(pointSquare))
             {
-                int x = randGen.Next(16, 580);
-                int y = randGen.Next(41, 350);
-                pointSquare.Location = new Point(x, y);
+                int pointSquarex = randGen.Next(16, 580);
+                int pointSquarey = randGen.Next(41, 350);
+                pointSquare.Location = new Point(pointSquarex, pointSquarey);
                 player2Score++;
                 p2ScoreLabel.Text = $"{player1Score}";
             }
 
-            if (player1Score == 5)
+            if (player1Score == 10)
             {
                 gameTimer.Enabled = false;
                 winLabel.Visible = true;
                 winLabel.Text = "Player 1 Wins!!";
             }
-            else if (player2Score == 5)
+            else if (player2Score == 10)
             {
                 gameTimer.Enabled = false;
                 winLabel.Visible = true;
@@ -211,8 +202,6 @@ namespace squareChaser
             e.Graphics.FillRectangle(redBrush, player2);
             e.Graphics.FillRectangle(whiteBrush, pointSquare);
             e.Graphics.FillEllipse(violetBrush, speedPoint);
-
-            //if statement for drawing pointSquare when player starts moving
         }
     }
 }
