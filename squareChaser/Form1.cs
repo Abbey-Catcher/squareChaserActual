@@ -5,6 +5,10 @@ using System.Media;
 
 namespace squareChaser
 {
+    //Abbey Catcher
+    //May 3rd, 2022
+    //Square chaser (Summative)
+
     public partial class Form1 : Form
     {
         Random randGen =  new Random();
@@ -211,7 +215,10 @@ namespace squareChaser
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            //draws boarder
             e.Graphics.DrawRectangle(boarderPen, 10, 40, this.Width - 20, this.Height - 50);
+
+            //Draws players and points (Score and speed)
             e.Graphics.FillRectangle(blueBrush, player1);
             e.Graphics.FillRectangle(redBrush, player2);
             e.Graphics.FillRectangle(whiteBrush, pointSquare);
