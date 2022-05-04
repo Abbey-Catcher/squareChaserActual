@@ -157,7 +157,7 @@ namespace squareChaser
                 int pointSquarey = randGen.Next(41, 350);
                 pointSquare.Location = new Point(pointSquarex, pointSquarey);
                 player2Score++;
-                p2ScoreLabel.Text = $"{player1Score}";
+                p2ScoreLabel.Text = $"{player2Score}";
                 SoundPlayer pointPlayer2 = new SoundPlayer(Properties.Resources._353497__matteshaus__metall_tischbein);
                 pointPlayer2.Play();
             }
@@ -194,7 +194,7 @@ namespace squareChaser
                 gameTimer.Enabled = false;
                 winLabel.Visible = true;
                 winLabel.Text = "Player 1 Wins!!";
-                SoundPlayer winPlayer = new SoundPlayer(Properties.Resources._270319__littlerobotsoundfactory__jingle_win_01);
+                SoundPlayer winPlayer = new SoundPlayer(Properties.Resources._270319__littlerobotsoundfactory__jingle_win_01__1_);
                 winPlayer.Play();
             }
             else if (player2Score == 10)
@@ -202,7 +202,7 @@ namespace squareChaser
                 gameTimer.Enabled = false;
                 winLabel.Visible = true;
                 winLabel.Text = "Player 2 Wins!!";
-                SoundPlayer winPlayer2 = new SoundPlayer(Properties.Resources._270319__littlerobotsoundfactory__jingle_win_01);
+                SoundPlayer winPlayer2 = new SoundPlayer(Properties.Resources._270319__littlerobotsoundfactory__jingle_win_01__1_);
                 winPlayer2.Play();
             }
 

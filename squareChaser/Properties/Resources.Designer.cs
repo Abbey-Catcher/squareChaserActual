@@ -63,9 +63,9 @@ namespace squareChaser.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream _270319__littlerobotsoundfactory__jingle_win_01 {
+        internal static System.IO.UnmanagedMemoryStream _270319__littlerobotsoundfactory__jingle_win_01__1_ {
             get {
-                return ResourceManager.GetStream("_270319__littlerobotsoundfactory__jingle_win_01", resourceCulture);
+                return ResourceManager.GetStream("_270319__littlerobotsoundfactory__jingle_win_01__1_", resourceCulture);
             }
         }
         

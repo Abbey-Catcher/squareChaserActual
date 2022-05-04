@@ -89,5 +89,8 @@
   <ItemGroup>
     <None Include="Resources\270319__littlerobotsoundfactory__jingle-win-01.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\270319__littlerobotsoundfactory__jingle-win-01 %281%29.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
