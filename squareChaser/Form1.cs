@@ -99,43 +99,43 @@ namespace squareChaser
         {
 
             //move player 1
-            if (wDown == true && player1.Y >= 47)
+            if (wDown == true && player1.Y >= 45)
             {
                 player1.Y -= playerSpeed;
             }
 
-            if (sDown == true && player1.Y < (this.Height - 19) - player1.Height)
+            if (sDown == true && player1.Y < (this.Height - 17) - player1.Height)
             {
                 player1.Y += playerSpeed;
             }
 
-            if (aDown == true && player1.X >= 17)
+            if (aDown == true && player1.X >= 15)
             {
                 player1.X -= playerSpeed;
             }
 
-            if (dDown == true && player1.X < (this.Width - 17) - player1.Width)
+            if (dDown == true && player1.X < (this.Width - 15) - player1.Width)
             {
                 player1.X += playerSpeed;
             }
             
             //move player 2 
-            if (upArrowDown == true && player2.Y >= 47)
+            if (upArrowDown == true && player2.Y >= 45)
             {
                 player2.Y -= playerSpeed;
             }
 
-            if (downArrowDown == true && player2.Y < (this.Height - 19) - player2.Height)
+            if (downArrowDown == true && player2.Y < (this.Height - 17) - player2.Height)
             {
                 player2.Y += playerSpeed;
             }
 
-            if (leftArrowDown == true && player2.X >= 17)
+            if (leftArrowDown == true && player2.X >= 15)
             {
                 player2.X -= playerSpeed;
             }
 
-            if (rightArrowDown == true && player2.X < (this.Width - 17) - player2.Width)
+            if (rightArrowDown == true && player2.X < (this.Width - 15) - player2.Width)
             {
                 player2.X += playerSpeed;
             }
